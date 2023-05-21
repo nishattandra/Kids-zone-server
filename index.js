@@ -35,14 +35,14 @@ async function run() {
             res.send(result);
         })
 
-        // app.get('/mytoy/', async(req, res) => {
-        //     let query = {}
-        //     const email = req.query?.email;
-        //     // console.log(email)
-        //     query = {email: email}
-        //     const result = await toyCollection.find(query).toArray();
-        //     res.send(result);
-        // })
+        app.get('/mytoy/', async(req, res) => {
+            let query = {}
+            const email = req.query?.email;
+            // console.log(email)
+            query = {email: email}
+            const result = await toyCollection.find(query).toArray();
+            res.send(result);
+        })
         // app.get('/singletoy/:id', async(req, res) => {
         //     const id = req.params.id;
         //     // console.log(email)
@@ -50,22 +50,22 @@ async function run() {
         //     const result = await toyCollection.findOne(query);
         //     res.send(result);
         // })
-        app.put('/updatetoy/:id', async(req, res) => {
-            const id = req.params.id;
-            const toy = req.body;
-            const query = {_id: new ObjectId(id)}
-            const options = {upsert: true}
-            const updated = {
-              $set:{
-                price: toy.price,
-                quantity: toy.quantity,
-                details: toy.details
+        // app.put('/updatetoy/:id', async(req, res) => {
+        //     const id = req.params.id;
+        //     const toy = req.body;
+        //     const query = {_id: new ObjectId(id)}
+        //     const options = {upsert: true}
+        //     const updated = {
+        //       $set:{
+        //         price: toy.price,
+        //         quantity: toy.quantity,
+        //         details: toy.details
 
-              }
-            }
-            const result = await toyCollection.updateOne(query, updated, options);
-            res.send(result);
-        })
+        //       }
+        //     }
+        //     const result = await toyCollection.updateOne(query, updated, options);
+        //     res.send(result);
+        // })
 
         app.post('/addtoy', async (req, res) => {
             const newToy = req.body;
